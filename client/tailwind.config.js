@@ -8,6 +8,7 @@ module.exports = {
       'button-bg': '#0f0f0f',
       'white': '#FFFFFF',
       'black': '#000000',
+      'gray':  '#949494',
       'blue': '#1a3782',
       'red': '#b00000',
     }

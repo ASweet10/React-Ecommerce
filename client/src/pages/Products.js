@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import ProductList from '../components/ProductList'
-import categoryImage from '../images/pexels-designshirt2.jpg'
+import clothingImage from '../images/pexels-designshirt2.jpg'
+import electronicsImage from '../images/pexels-drone.jpg'
+import furnitureImage from '../images/pexels-white-chairs.jpg'
+import appliancesImage from '../images/pexels-oldtv1.jpg'
 import TrendingProducts from '../components/TrendingProducts'
 
 const Products = () => {
@@ -49,7 +52,9 @@ const Products = () => {
   //console.log(selectedCategories)
 
   return (
-    <div className='flex px-7 py-12 bg-background'>
+    <div className='flex px-12 md:px-40 py-12 bg-background'>
+
+      {/* Left */}
       <div className='flex-1 sticky h-full mt-12'>
         <div className='mb-8'>
           <h2 className='font-medium mb-2 text-lg'>Categories</h2>
@@ -61,7 +66,6 @@ const Products = () => {
               </div>
             )
           })}
-
         </div>
         <div className='mb-8'>
           <h2 className='font-medium mb-2 text-lg'>Filter By Price</h2>
@@ -83,8 +87,17 @@ const Products = () => {
           </div>
         </div>
       </div>
+
+      {/* Right */}
       <div className='flex flex-col w-3/4'>
-        <img src={categoryImage} alt="" className='w-full h-60 object-cover mb-8' />
+        <img 
+          className='w-full h-60 object-cover mb-8'
+          src={categoryID === 
+            1 ? clothingImage : 
+            2 ? electronicsImage :
+            3 ? furnitureImage :
+            appliancesImage } alt="" 
+        />
         <ProductList catId={categoryID} maxPrice={maxPrice} sort={sort} categories={selectedCategories}/>
       </div>
     </div>

@@ -63,6 +63,9 @@
     },
     "onSale": {
       "type": "boolean"
+    },
+    "salePrice": {
+      "type": "decimal"
     }
   }
 }
