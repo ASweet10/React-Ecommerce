@@ -6,14 +6,14 @@ const FeaturedProducts = () => {
   const { data, loading, error } = useFetch( "/products?populate=*&[filters][type][$eq]=featured" )
 
   return (
-    <div className='w-full py-14 px-20 md:px-40 bg-background'>
-        <div className='flex items-center justify-left mb-12'>
+    <div className='w-full py-14 px-8 md:px-24 bg-background'>
+        <div className='flex items-center justify-center mb-12'>
             <h1 className='capitalize font-bold text-2xl'>Featured Products</h1>
         </div>
         
-        <div className='grid md:grid-cols-4 grid-cols-2 justify-center gap-4'> {/* flex-wrap creates grid; horizontal layout without it */}
+        <div className='flex flex-wrap justify-center gap-4'> {/* flex-wrap creates grid; horizontal layout without it */}
           { error 
-              ? "Something went wrong"
+              ? "Something went wrong"  
               : loading 
                 ? "Loading..." 
                 : data?.map(item => ( <Card item={item} key={item.id}/> ))

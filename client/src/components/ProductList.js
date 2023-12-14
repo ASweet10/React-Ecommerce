@@ -11,7 +11,7 @@ const ProductList = ({ categories, maxPrice, sort, catId }) => {
   )
 
   return (
-    <div className='flex justify-evenly flex-wrap'>
+    <div className='flex flex-row gap-6 flex-wrap justify-center'>
       { loading
           ? "Loading..."
           : data?.map((item) => ( <Card item={item} key={item.id}/> ))

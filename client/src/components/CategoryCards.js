@@ -1,30 +1,34 @@
 import React from 'react'
-import clothingImage from '../images/pexels-strawhat2.jpg'
-import furnitureImage from '../images/pexels-wickerchair.jpg'
-import electronicsImage from '../images/pexels-towerspeakers.jpg'
-import appliancesImage from '../images/pexels-washingmachine2.jpg'
-import { Link } from 'react-router-dom'
+import ImageCarousel from './ImageCarousel'
 
 const CategoryCards = () => {
   return (
-    //Turn this into grid instead. 2 columns for mobile 3 or 4 for desktop. cards of each category
     <div className='flex w-full h-full pt-14 px-8 md:px-40 justify-center bg-background'>
-      <div className='grid md:grid-cols-3 grid-cols-2 text-white gap-2'>
-
+      <ImageCarousel />
+      {/*
+      <div className='flex flex-col md:grid md:grid-cols-4 text-white gap-1'>
         <div className='flex overflow-hidden'>
-          <img className='w-80 h-56 md:h-80 object-cover' src={furnitureImage} alt="" />
-          <button className='absolute py-4 pl-4 my-40 md:my-64 border-none min-w-[100px] w-fit cursor-pointer font-medium text-2xl'>
-            <Link to="/products/1">Clothing</Link>
-          </button> 
+          <Link to="/products/1"><img className='w-full h-max-[80px] md:w-80 md:h-80 object-cover' src={furnitureImage} alt="" /></Link>
+          <h1 className='absolute p-4 my-64 m-auto w-fit cursor-pointer font-medium text-2xl'>Furniture</h1>
         </div>
 
         <div className='flex overflow-hidden'>
-          <img className='w-80 h-80 object-cover' src={electronicsImage} alt=""></img>
-          <button className='absolute p-4 my-64 m-auto w-fit cursor-pointer font-medium text-2xl'>
-            <Link to="/products/2">Electronics</Link>
-          </button> 
+          <Link to="/products/2"><img className='w-80 h-56 md:h-80 object-cover' src={electronicsImage} alt="" /></Link>
+          <h1 className='absolute p-4 my-64 m-auto w-fit cursor-pointer font-medium text-2xl'>Electronics</h1>
         </div>
 
+        <div className='flex overflow-hidden'>
+          <Link to="/products/2"><img className='w-80 h-56 md:h-80 object-cover' src={electronicsImage} alt="" /></Link>
+          <h1 className='absolute p-4 my-64 m-auto w-fit cursor-pointer font-medium text-2xl'>Electronics</h1>
+        </div>
+
+        <div className='flex overflow-hidden'>
+          <Link to="/products/2"><img className='w-80 h-56 md:h-80 object-cover' src={electronicsImage} alt="" /></Link>
+          <h1 className='absolute p-4 my-64 m-auto w-fit cursor-pointer font-medium text-2xl'>Electronics</h1>
+        </div>
+        
+        {/* OLD LAYOUT, 2 FULL IMAGES + 2 HALF IMAGES ON RIGHT}
+        {/*
         <div className='flex flex-col'>
           <div className='flex gap-3 mb-1 relative overflow-hidden'>
             <img className='w-80 h-[156px] object-cover' src={clothingImage} alt=""></img>
@@ -39,8 +43,8 @@ const CategoryCards = () => {
             </button> 
           </div>
         </div>
-
       </div>
+      */}
     </div>
   )
 }

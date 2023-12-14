@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import ShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
+import StarIcon from '@mui/icons-material/Star'
+import StarBorderIcon from '@mui/icons-material/StarBorder'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import TrendingProducts from '../components/TrendingProducts'
@@ -11,7 +12,8 @@ const Product = () => {
   const [ quantity, setQuantity ] = useState(1)
   const [ data, setData ] = useState([])
   const [ loading, setLoading ] = useState(false)
-  const [ error, setError ] = useState("")
+  //const [ error, setError ] = useState("")
+  const [ displayImg, setDisplayImg ] = useState(0)
 
   const dispatch = useDispatch()
 
@@ -27,7 +29,7 @@ const Product = () => {
         setData(res.data.data)
 
       } catch(err) {
-        setError(err)
+        //setError(err)
       }
       console.log(data)
       setLoading(false)
@@ -36,52 +38,76 @@ const Product = () => {
   }, [])
 
   return (
-    <div className='w-full py-28 px-20 md:px-40 bg-background'>
+    <div className='w-full py-6 px-20 md:px-32 bg-background'>
       { loading 
           ? ("Loading...") 
           : ( 
           //Wrap in React fragment; returning multiple items
-          <> 
-            <div className='flex justify-center'>
-              <h1 className='text-3xl font-bold'>{data?.attributes?.title}</h1>
-            </div>
-      
-            <div className='flex flex-col md:flex-row md:px-40 pt-12 gap-8'>
-              <div className='flex flex-col md:w-1/2'> {/* Left */}
-                <div className='flex'>
-                  <img src={process.env.REACT_APP_UPLOAD_URL + data?.attributes?.img?.data?.attributes?.url} className='w-full object-cover' alt="" />
+          <>
+            <div className='flex flex-col md:flex-row pt-8 gap-12'>
+              {/* Left */}
+              <div className='flex flex-col md:w-1/2 gap-4'>
+                <img className='w-full object-cover rounded-lg max-h-[360px]' alt='img'
+                  src={ displayImg === 0 ? (
+                    process.env.REACT_APP_UPLOAD_URL + data?.attributes?.img?.data?.attributes?.url
+                    ) : (
+                      process.env.REACT_APP_UPLOAD_URL + data?.attributes?.img2?.data?.attributes?.url
+                    )
+                  }
+                />
+                <div className='flex gap-4'>
+                  <img className='w-1/3 object-cover rounded-lg max-h-36 cursor-pointer' alt="img2" onClick={() => setDisplayImg(0)}
+                    src={process.env.REACT_APP_UPLOAD_URL + data?.attributes?.img?.data?.attributes?.url}
+                  />
+                  <img className='w-1/3 object-cover rounded-lg max-h-36 cursor-pointer' alt="img2" onClick={() => setDisplayImg(1)}
+                    src={process.env.REACT_APP_UPLOAD_URL + data?.attributes?.img2?.data?.attributes?.url}
+                  />
                 </div>
               </div>
-              <div className='w-full md:w-3/5 flex-col gap-7 justify-center'> {/* Right */}
 
-                <div className='pb-16'>
+              {/* Right */}
+              <div className='w-full md:w-3/5 gap-2 justify-center'> 
+
+                <div className='flex justify-start pb-2'>
+                  <h1 className='text-3xl font-bold'>{data?.attributes?.title}</h1>
+                </div>
+
+                <div className='flex items-center'>
+                  <StarIcon className='text-red'/>
+                  <StarIcon className='text-red' />
+                  <StarIcon className='text-red' />
+                  <StarIcon className='text-red' />
+                  <StarBorderIcon className='text-red' />
+                  <p className='text-xl pl-3'>(160)</p>
+                </div>
+
+                <div className='flex flex-col justify-start pb-3'>
+                  <h1 className='text-2xl font-bold py-3'>Details:</h1>
                   <p className='text-lg font-normal'>{data?.attributes?.desc}</p>
                 </div>
 
-                <div className='pb-16'>
+                <div className='pt-4 pb-10'>
                   <div className='flex flex-row items-center justify-evenly'>
                     <span className='text-2xl font-bold'>${(data?.attributes?.price * quantity).toFixed(2)}</span>
                     <div className='flex items-center gap-4'>
-                      <button 
-                        onClick={() => setQuantity(prev => (prev === 1 ? 1 : prev-1))}
-                        className='items-center justify-center cursor-pointer w-12 h-12 border-4 text-xl font-bold'
+                      <button onClick={() => setQuantity(prev => (prev === 1 ? 1 : prev - 1))}
+                        className='cursor-pointer w-12 h-12 border-2 border-gray text-red text-2xl font-bold'
                       >
                         -
                       </button>
                       <h1 className='font-bold text-xl'>{quantity}</h1>
                       <button 
                         onClick={() => setQuantity(prev => prev+1)}
-                        className='items-center justify-center cursor-pointer w-12 h-12 border-4 text-xl font-bold'
+                        className='cursor-pointer w-12 h-12 border-2 border-gray text-green text-2xl font-bold'
                       >
                         +
                       </button>
                     </div>
                   </div>
                 </div>
-
-                <div className='justify-center items-center text-center h-1/3'>
+                <div className='flex w-full justify-center'>
                   <button 
-                    className='border-4 p-4 text-xl font-medium'
+                    className='bg-black text-white py-4 px-10 text-xl font-medium transition duration-300 hover:scale-105'
                     onClick={() => dispatch(addToCart({
                       id: data.id,
                       title: data.attributes.title,
@@ -91,25 +117,11 @@ const Product = () => {
                       quantity
                     }))}
                   >
-                    Add to Cart <ShoppingCartIcon />
+                    Add to Cart
                   </button>
                 </div>
-              </div>
-            </div>
 
-            <div className='flex justify-center pt-36 pb-12'><h1 className='text-4xl font-bold'>Details</h1></div>
-            <div className='flex flex-col md:flex-row justify-evenly text-center'>
-              <div className='pb-8'>
-                <h1 className='text-xl font-bold'>Weight</h1>
-                <h2 className='text-lg font-medium'>250kg</h2>
-              </div>
-              <div className='pb-8'>
-                <h1 className='text-xl font-bold'>Weight</h1>
-                <h2 className='text-lg font-medium'>250kg</h2>
-              </div>
-              <div className='pb-8'>
-                <h1 className='text-xl font-bold'>Weight</h1>
-                <h2 className='text-lg font-medium'>250kg</h2>
+
               </div>
             </div>
         </>)

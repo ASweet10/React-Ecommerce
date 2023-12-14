@@ -16,9 +16,7 @@ const Layout = () => {
       {/* https://reactrouter.com/en/main/components/outlet */}
       {/* Used in parent route element to render child route elements */}
       <Outlet /> 
-
       <Footer />
-
     </div>
   )
 }

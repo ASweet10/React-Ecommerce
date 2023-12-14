@@ -1,34 +1,29 @@
 //import Stripe from 'stripe'
 //const stripe = new Stripe(process.env.STRIPE_KEY, {apiVersion: '2023-08-16'})
-("use strict")
 const stripe = require("stripe")(process.env.STRIPE_KEY)
 
 const { createCoreController } = require('@strapi/strapi').factories;
 
-module.exports = createCoreController('api::order.order', ({strapi}) => ({
+module.exports = createCoreController("api::order.order", ({strapi}) => ({
     async create(ctx) {
         const { products } = ctx.request.body
 
         try{
             const lineItems = await Promise.all(
                 // For each item from front end...
-                products.map(async (product) => 
-                {   
+                products.map(async (product) => {   
                     // Check for product id
-                    const item = await strapi
-                        .service("api::product.product")
-                        .findOne(product.id)
-    
-                        return {
-                            price_data:{
-                                currency:"usd",
-                                product_data:{
-                                    name: item.title,
-                                },
-                                unit_amount: item.price * 100
+                    const item = await strapi.service("api::product.product").findOne(product.id)    
+                    return {
+                        price_data:{
+                            currency:"usd",
+                            product_data:{
+                                name: item.title,
                             },
-                            quantity: item.quantity
-                        }
+                            unit_amount: item.price * 100
+                        },
+                        quantity: product.quantity
+                    }
                 })
             )
 
@@ -42,12 +37,9 @@ module.exports = createCoreController('api::order.order', ({strapi}) => ({
 
             })
 
-            await strapi.service("api::order:order").create({
-                data:{
-                    products,
-                    stripeId: session.id,
-                }
-            })
+            await strapi
+                .service("api::order:order")
+                .create({ data:{ products, stripeId: session.id }})
 
             return { stripeSession: session }
         } catch(err) {
