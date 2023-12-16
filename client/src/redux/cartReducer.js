@@ -17,6 +17,7 @@ export const cartSlice = createSlice({
       if(item) {
         item.quantity += action.payload.quantity
         toast.success(`${item.title} added to the cart`)
+        console.log(item.quantity)
       } else {
         state.products.push(action.payload)
       }

@@ -36,6 +36,11 @@ const Cart = () => {
     }
   }
 
+  const handleDeleteItem = async ( id, quantity, title ) => {
+    dispatch(removeItem(id))
+    toast.error('Removed ' + title)
+  }
+
   return (
     <div className='absolute right-4 top-20 z-50 bg-background p-4 shadow-lg'>
         <h1 className='mb-4 text-black font-bold text-xl text-center'>Your Cart</h1>
@@ -47,7 +52,7 @@ const Cart = () => {
               <p className='mb-2'>{item.desc?.substring(0, 50)}</p> {/* Show first 50 characters */}
               <div className='flex flex-row'>
                 <div>{item.quantity} x ${item.price}</div>
-                <DeleteIcon className='ml-5 text-red cursor-pointer' onClick={() => dispatch(removeItem(item.id))}/>
+                <DeleteIcon className='ml-5 text-red cursor-pointer' onClick={() => handleDeleteItem(item.id, item.quantity, item.title)}/>
               </div>
             </div>
           </div>

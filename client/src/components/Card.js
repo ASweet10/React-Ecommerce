@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const Card = ({ item }) => {
     console.log(item)
   return (
-    <Link to={`/product/${item.id}`} reloadDocument>
+    <Link to={`/product/${item.id}`} reloadDocument> {/* reloadDocument: Re-render page with proper product displayed */}
         <div className='flex flex-col w-48 justify-center'>
             <div className='w-full h-60 overflow-hidden relative'>
                 {item.isNew && <span className='absolute mt-1 ml-1 bg-white text-teal-300 px-1 py-1 z-30 font-medium'>New</span> }

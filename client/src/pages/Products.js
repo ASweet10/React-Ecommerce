@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import ProductList from '../components/ProductList'
-import clothingImage from '../images/pexels-designshirt2.jpg'
-import electronicsImage from '../images/pexels-drone.jpg'
-import furnitureImage from '../images/pexels-orangecouch.jpg'
-import appliancesImage from '../images/pexels-dishwasher1.jpg'
-import TrendingProducts from '../components/TrendingProducts'
+import clothingImage from '../images/pexels-clothingcategory.jpg'
+import electronicsImage from '../images/pexels-clothingcategory.jpg'
+import furnitureImage from '../images/pexels-furniturecategory.jpg'
+import appliancesImage from '../images/pexels-clothingcategory.jpg'
 
 const Products = () => {
   const categoryID = parseInt(useParams().id)
@@ -15,13 +14,12 @@ const Products = () => {
   const [ selectedCategories, setSelectedCategories ] = useState([])
 
   const [ data, setData ] = useState([])
-  const [ loading, setLoading ] = useState(false)
-  const [ error, setError ] = useState("")
+  //const [ loading, setLoading ] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setLoading(true)
+        //setLoading(true)
 
         const res = await axios.get(process.env.REACT_APP_API_URL + `/categories?populate=*&[filters][categories][id][$eq]=${categoryID}`, {
           headers: { Authorization: "Bearer " + process.env.REACT_APP_STRAPI_API_TOKEN }
@@ -29,10 +27,10 @@ const Products = () => {
         setData(res.data.data)
 
       } catch(err) {
-        setError(err)
+        //setError(err)
       }
       console.log(data)
-      setLoading(false)
+      //setLoading(false)
     }
     fetchData()
   }, [])
