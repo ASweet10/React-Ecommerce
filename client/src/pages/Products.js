@@ -3,9 +3,9 @@ import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import ProductList from '../components/ProductList'
 import clothingImage from '../images/pexels-clothingcategory.jpg'
-import electronicsImage from '../images/pexels-clothingcategory.jpg'
+import electronicsImage from '../images/pexels-test2.jpg'
 import furnitureImage from '../images/pexels-furniturecategory.jpg'
-import appliancesImage from '../images/pexels-clothingcategory.jpg'
+import appliancesImage from '../images/pexels-test.jpg'
 
 const Products = () => {
   const categoryID = parseInt(useParams().id)
@@ -34,7 +34,8 @@ const Products = () => {
     }
     fetchData()
   }, [])
-
+  
+  /*
   const handleChange = (e) => {
     const value = e.target.value
     const isChecked = e.target.checked
@@ -46,12 +47,14 @@ const Products = () => {
     )
     
   }
+  */
 
   return (
     <div className='flex px-12 md:px-24 py-12 gap-8 bg-background'>
 
       {/* Left */}
       <div className='flex-1 sticky h-full mt-8 px-4'>
+        {/*
         <div className='mb-8'>
           <h2 className='font-medium mb-2 text-lg'>Categories</h2>
           {data?.map((item) => {
@@ -63,12 +66,12 @@ const Products = () => {
             )
           })}
         </div>
+        */}
         <div className='mb-8'>
-          <h2 className='font-medium mb-2 text-lg'>Filter By Price</h2>
+          <h2 className='font-medium mb-2 text-lg'>Max Price</h2>
           <div className='mb-2'>
-            <span className='mr-2'>0</span>
-            <input type="range" min={0} max={1000} defaultValue={500} onChange={ (e)=>setMaxPrice(e.target.value) } />
-            <span className='ml-2'>{maxPrice}</span>
+            <input type="range" id="default-range" className='h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer' min={0} max={1000} defaultValue={500} onChange={ (e)=>setMaxPrice(e.target.value) } />
+            <span className='mr-2'>${maxPrice}</span>
           </div>
         </div>
 

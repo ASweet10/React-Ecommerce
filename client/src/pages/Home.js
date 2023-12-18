@@ -9,9 +9,8 @@ const Home = () => {
     <div className='w-full'>
       <CategoryCards />
       <FeaturedProducts /> 
-      <PictureTextSection type="A" />
+      <PictureTextSection />
       <TrendingProducts />
-      <PictureTextSection type="B" />
     </div>
   )
 }
