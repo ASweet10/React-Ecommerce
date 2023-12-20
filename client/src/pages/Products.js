@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import ProductList from '../components/ProductList'
-import clothingImage from '../images/pexels-clothingcategory.jpg'
-import electronicsImage from '../images/pexels-test2.jpg'
-import furnitureImage from '../images/pexels-furniturecategory.jpg'
-import appliancesImage from '../images/pexels-test.jpg'
+import clothingImage from '../images/pexels-clothing.jpg'
+import electronicsImage from '../images/pexels-electronics.jpg'
+import furnitureImage from '../images/pexels-furniture.jpg'
+import appliancesImage from '../images/pexels-appliances.jpg'
 
 const Products = () => {
   const categoryID = parseInt(useParams().id)
@@ -92,7 +92,7 @@ const Products = () => {
       {/* Right */}
       <div className='flex flex-col w-full'>
         <img 
-          className='w-full h-60 object-cover mb-8'
+          className='w-full md:h-72 object-cover mb-8'
           src={ categoryID === 1 ? clothingImage
              : categoryID === 2 ? electronicsImage
              : categoryID === 3 ? furnitureImage

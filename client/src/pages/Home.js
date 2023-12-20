@@ -1,13 +1,13 @@
 import React from 'react'
-import CategoryCards from '../components/CategoryCards'
+import HeroCarousel from '../components/HeroCarousel'
 import TrendingProducts from '../components/TrendingProducts'
 import FeaturedProducts from '../components/FeaturedProducts'
 import PictureTextSection from '../components/PictureTextSection'
 
 const Home = () => {
   return (
-    <div className='w-full'>
-      <CategoryCards />
+    <div>
+      <HeroCarousel />
       <FeaturedProducts /> 
       <PictureTextSection />
       <TrendingProducts />

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../images/goat-logo.png'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
+import { MdCopyright } from "react-icons/md"
 import { FaBars, FaTimes } from 'react-icons/fa'
 import Cart from './Cart'
 import { useSelector } from 'react-redux'
@@ -21,8 +22,15 @@ const Navbar = () => {
   return (
     <div className='flex w-full md:px-24 h-20 items-center bg-background overflow-hidden z-40 top-0 justify-between'>
       <div className='md:flex pl-4'>
-        <div className='flex items-center gap-4 pl-8'>
-          <Link to="/" className='text-3xl'><img className='h-14 w-14' src={logo} alt=""></img></Link>
+        <div className='flex'>
+          <Link to="/" className='flex items-center gap-3'>
+            <img className='h-12 w-12' src={logo} alt="" />
+            <div className='flex items-start gap-1'>
+              <h1 className='text-sm md:text-xl font-bold uppercase'>Pinnacle Trading Co.</h1>
+              <MdCopyright className=' text-xs'/>
+            </div>
+          </Link>
+
         </div>
       </div>
 

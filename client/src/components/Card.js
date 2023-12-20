@@ -5,10 +5,10 @@ const Card = ({ item }) => {
     console.log(item)
   return (
     <Link to={`/product/${item.id}`} reloadDocument> {/* reloadDocument: Re-render page with proper product displayed */}
-        <div className='flex flex-col w-48 justify-center'>
+        <div className='flex flex-col w-36 md:w-48 justify-center'>
             <div className='w-full h-60 overflow-hidden relative'>
-                {item.isNew && <span className='absolute mt-1 ml-1 bg-white text-teal-300 px-1 py-1 z-30 font-medium'>New</span> }
-                {item?.attributes?.onSale && <span className='absolute mt-3 ml-32 bg-red text-white px-1 py-1 z-30 font-medium'>SALE</span>}
+                {item?.attributes?.isNew && <span className='absolute mt-3 ml-4 bg-black text-white px-1 py-1 z-30 font-medium'>New</span> }
+                {item?.attributes?.onSale && <span className='absolute mt-3 ml-[88px] md:ml-[136px] bg-red text-white px-1 py-1 z-30 font-medium'>SALE</span>}
                 <img src={ process.env.REACT_APP_UPLOAD_URL + item?.attributes?.img?.data?.attributes?.url }  alt="Something went wrong" 
                     className='w-full h-full rounded-lg object-cover absolute z-10 transition-transform duration-300 transform hover:scale-110'
                 />

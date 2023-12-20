@@ -2,11 +2,11 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div className='w-full px-12 bg-black text-white'>
+    <div className='w-full px-8 bg-black text-white'>
       <div className='flex flex-col py-16 justify-center items-center'>
         <div className='flex flex-col items-center text-md'>
-          <h1 className='text-xl font-medium pb-4 uppercase'>Newsletter</h1>
-          <p className='font-medium pb-4'>Sign up for promo deals and discounts</p>
+          <h1 className='text-xl font-medium pb-2 uppercase'>Newsletter</h1>
+          <p className='font-medium pb-4 text-center'>Sign up for promo deals and discounts</p>
           <div className='flex flex-row gap-2'>
             <input type="text" placeholder='Please enter your email' className='p-2 rounded-md text-black'></input>
             <button className='px-4 py-2 rounded-md font-bold bg-white text-black'>Join</button>
