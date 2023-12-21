@@ -38,7 +38,7 @@ const Product = () => {
   }, [])
 
   return (
-    <div className='w-full py-6 px-20 md:px-32 bg-background'>
+    <div className='w-full py-6 px-6 md:px-16 bg-background'>
       { loading 
           ? ("Loading...") 
           : ( 
@@ -46,7 +46,7 @@ const Product = () => {
           <>
             <div className='flex flex-col md:flex-row pt-8 gap-12'>
               {/* Left */}
-              <div className='flex flex-col md:w-1/2 gap-4'>
+              <div className='flex flex-col w-full md:w-1/2 gap-4'>
                 <img className='w-full object-cover rounded-lg max-h-[360px]' alt='img'
                   src={ displayImg === 0 ? (
                     process.env.REACT_APP_UPLOAD_URL + data?.attributes?.img?.data?.attributes?.url

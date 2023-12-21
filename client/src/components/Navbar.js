@@ -4,6 +4,7 @@ import logo from '../images/goat-logo.png'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import { MdCopyright } from "react-icons/md"
 import { FaBars, FaTimes } from 'react-icons/fa'
+import { PiDiamond, PiDiamondFill } from "react-icons/pi"
 import Cart from './Cart'
 import { useSelector } from 'react-redux'
 
@@ -26,7 +27,7 @@ const Navbar = () => {
           <Link to="/" className='flex items-center gap-3'>
             <img className='h-12 w-12' src={logo} alt="" />
             <div className='flex items-start gap-1'>
-              <h1 className='text-sm md:text-xl font-bold uppercase'>Pinnacle Trading Co.</h1>
+              <h1 className='text-sm md:text-xl font-bold uppercase'>Summit Trading Co.</h1>
               <MdCopyright className=' text-xs'/>
             </div>
           </Link>
@@ -52,25 +53,29 @@ const Navbar = () => {
         {navOpen ? <FaTimes className='text-text-dark dark:text-text-light' size={30}/> 
             : <FaBars className='text-text-dark dark:text-text-light' size={30}/> }
       </div>
+
       {/* Fullscreen Mobile Popup Nav */}
-      {/* Turn this into pop-out list from right-hand side */}
       {navOpen && (
-        <ul className='flex flex-col justify-center items-center absolute top-0 left-0 
-          w-full h-screen bg-background'>
-          {navCategories.map(({ id, link }) => {
-            return(
-              <li key={id}
-              className='px-4 cursor-pointer capitalize text-4xl py-6
-            hover:scale-105 duration-200 text-text-dark dark:text-text-light'>
-              <Link 
-              onClick={() => setNavOpen(!navOpen)}
-              to={link} smooth duration={500}>
-                {link}
-              </Link>
-            </li>
-            )
-          })}
-        </ul>
+        <div className='flex flex-col justify-center items-center fixed top-0 left-0 w-full h-screen bg-background z-50'>
+          <div className='pb-16'>
+            <img className='h-24 w-24' src={logo} alt="" />
+          </div>
+
+          <ul className=''>
+            {navCategories.map(({ id, title, link }) => {
+              return(
+                <li key={id} className='px-4 uppercase font-bold text-4xl py-6 flex items-end gap-3 hover:grad'>
+                  <PiDiamondFill className='text-black active:text-gray'/>
+                  <Link 
+                    onClick={() => setNavOpen(!navOpen)}
+                    to={link} smooth duration={500}>
+                      {title}
+                  </Link>
+              </li>
+              )
+            })}
+          </ul>
+        </div>
       )}
       {/*
       { navOpen && (
