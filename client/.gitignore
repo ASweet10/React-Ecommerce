@@ -19,8 +19,8 @@
 .env.production.local
 
 # custom
-*.jpg
-*.png
+#*.jpg
+#*.png
 *.env
 
 npm-debug.log*
