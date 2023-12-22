@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../images/goat-logo.png'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
-import { MdCopyright } from "react-icons/md"
 import { FaBars, FaTimes } from 'react-icons/fa'
 import { PiDiamond, PiDiamondFill } from "react-icons/pi"
 import Cart from './Cart'
@@ -26,10 +25,6 @@ const Navbar = () => {
         <div className='flex'>
           <Link to="/" className='flex items-center gap-3'>
             <img className='h-12 w-12' src={logo} alt="" />
-            <div className='flex items-start gap-1'>
-              <h1 className='text-sm md:text-xl font-bold uppercase'>Summit Trading Co.</h1>
-              <MdCopyright className=' text-xs'/>
-            </div>
           </Link>
 
         </div>
