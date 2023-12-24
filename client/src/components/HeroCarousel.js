@@ -37,7 +37,7 @@ const HeroCarousel = () => {
   })
 
     return(
-      <div className='justify-center items-center w-full h-96 lg:h-[450px] overflow-hidden relative bg-background'>
+      <div className='flex justify-center items-center w-full h-96 lg:h-[450px] overflow-hidden relative bg-background'>
         <div className='absolute top-1/4 md:top-[50%] left-[5%] p-2 text-black cursor-pointer hover:text-white' onClick={() => handlePrevButton()}>
           <IoIosArrowBack size={35} />
         </div>
