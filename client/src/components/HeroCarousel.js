@@ -1,8 +1,8 @@
 import React from 'react'
-import clothingImage from '../images/pexels-carousel1.jpg'
-import electronicsImage from '../images/pexels-carousel2.jpg'
-import furnitureImage from '../images/pexels-carousel3.jpg'
-import appliancesImage from '../images/pexels-carousel4.jpg'
+import carousel1 from '../images/carousel1.jpg'
+import carousel2 from '../images/carousel2.jpg'
+import carousel3 from '../images/carousel3.jpg'
+import carousel4 from '../images/carousel4.jpg'
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io"
 import { RxDotFilled } from "react-icons/rx"
 import { Link } from 'react-router-dom'
@@ -10,10 +10,10 @@ import { useState, useEffect } from 'react'
 
 const HeroCarousel = () => {
   const cardData = [
-    {"id": 1, "title": "Clothing", "src": clothingImage, "link": "/products/1"},
-    {"id": 2, "title": "Electronics", "src": electronicsImage, "link": "/products/2"},
-    {"id": 3, "title": "Furniture", "src": furnitureImage, "link": "/products/3"},
-    {"id": 4, "title": "Appliances", "src": appliancesImage, "link": "/products/4"},
+    {"id": 1, "src": carousel1 },
+    {"id": 2, "src": carousel2 },
+    {"id": 3, "src": carousel3 },
+    {"id": 4, "src": carousel4 },
   ]
 
   const [ currentImg, setCurrentImg ] = useState(cardData[0])
@@ -37,18 +37,18 @@ const HeroCarousel = () => {
   })
 
     return(
-      <div className='flex justify-center items-center w-full h-96 lg:h-[450px] overflow-hidden relative bg-background'>
-        <div className='absolute top-1/4 md:top-[50%] left-[5%] p-2 text-black cursor-pointer hover:text-white' onClick={() => handlePrevButton()}>
+      <div className='flex justify-center items-center w-full h-96 lg:h-[500px] overflow-hidden relative bg-background'>
+        <div className='absolute top-1/2 left-[5%] p-2 text-black cursor-pointer hover:text-white' onClick={() => handlePrevButton()}>
           <IoIosArrowBack size={35} />
         </div>
 
         <div>
-          <Link to={ cardData[imgIndex].link }>
+          <Link to={ "/products" }>
             <img src={ cardData[imgIndex].src } alt="" className='object-cover duration-500' />
           </Link>
         </div>
 
-        <div className='absolute top-1/4 md:top-[50%] right-[5%] p-2 text-black cursor-pointer hover:text-white' onClick={() => handleNextButton()}>
+        <div className='absolute top-1/2 right-[5%] p-2 text-black cursor-pointer hover:text-white' onClick={() => handleNextButton()}>
           <IoIosArrowForward size={35} /> 
         </div>
       </div>

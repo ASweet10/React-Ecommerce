@@ -5,18 +5,16 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import { FaBars, FaTimes } from 'react-icons/fa'
 import { PiDiamond, PiDiamondFill } from "react-icons/pi"
 import Cart from './Cart'
-import { useSelector } from 'react-redux'
 
 const Navbar = () => {
   const [ cartOpen, setCartOpen ] = useState(false)
   const [ navOpen, setNavOpen ] = useState(false)
-  const products = useSelector(state => state?.cart?.products)
+  const [ products, setProducts ] = useState(0)
 
   const navCategories = [
-    { 'id': 1, 'title': 'Clothing', 'link': '/products/1' },
-    { 'id': 2, 'title': 'Electronics', 'link': '/products/2' },
-    { 'id': 3, 'title': 'Furniture', 'link': '/products/3' },
-    { 'id': 4, 'title': 'Appliances', 'link': '/products/4' },
+    { 'id': 1, 'title': 'Home', 'link': '/' },
+    { 'id': 2, 'title': 'About', 'link': '/about' },
+    { 'id': 3, 'title': 'Products', 'link': '/products' },
   ]
 
   return (
@@ -24,20 +22,20 @@ const Navbar = () => {
       <div className='md:flex pl-4'>
         <div className='flex'>
           <Link to="/" className='flex items-center gap-3'>
-            <img className='h-12 w-12' src={logo} alt="" />
+            <img className='h-12 w-12 text-primary' src={logo} alt="" />
           </Link>
 
         </div>
       </div>
 
       {/* Desktop Nav */}
-      <div className='hidden md:flex ml-auto pr-8 text-black'>
+      <div className='hidden md:flex ml-auto pr-8 text-primary'>
         { navCategories.map( (item) => (
             <Link className='mr-6 cursor-pointer font-medium' to={item.link} key={item.id}>{item.title}</Link>
         ))}
         <div className='flex cursor-pointer'>
           <div className='flex flex-row relative' onClick={()=>setCartOpen(!cartOpen)}>
-            <ShoppingCartIcon className='text-black' />
+            <ShoppingCartIcon className='text-primary' />
             <span className='flex items-center justify-center ml-3 mt-3 text-sm w-4 h-4 rounded-md bg-blue text-white absolute'>{products ? products?.length : 0}</span>
           </div>
         </div>
@@ -60,7 +58,7 @@ const Navbar = () => {
             {navCategories.map(({ id, title, link }) => {
               return(
                 <li key={id} className='px-4 uppercase font-bold text-4xl py-6 flex items-end gap-3 hover:grad'>
-                  <PiDiamondFill className='text-black active:text-gray'/>
+                  <PiDiamondFill className='text-primary active:text-gray'/>
                   <Link 
                     onClick={() => setNavOpen(!navOpen)}
                     to={link} smooth duration={500}>

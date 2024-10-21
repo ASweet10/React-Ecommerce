@@ -13,8 +13,6 @@ const Layout = () => {
       <Toaster />
       <ScrollToTop />
       <Navbar />
-      {/* https://reactrouter.com/en/main/components/outlet */}
-      {/* Used in parent route element to render child route elements */}
       <Outlet /> 
       <Footer />
     </div>
@@ -24,7 +22,7 @@ const Layout = () => {
 const router = createBrowserRouter([
   { path:"/", element: <Layout />, children: [
     { path: "/", element: <Home />},
-    { path: "/products/:id", element: <Products />},
+    { path: "/products/", element: <Products />},
     { path: "/product/:id", element: <Product />},
   ]}
 

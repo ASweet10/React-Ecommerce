@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import { useParams } from 'react-router-dom'
-import ProductList from '../components/ProductList'
-import clothingImage from '../images/pexels-clothing.jpg'
 import electronicsImage from '../images/pexels-electronics.jpg'
-import furnitureImage from '../images/pexels-furniture.jpg'
-import appliancesImage from '../images/pexels-appliances.jpg'
+import Card from "../components/Card"
 
 const Products = () => {
   const categoryID = parseInt(useParams().id)
@@ -13,26 +9,22 @@ const Products = () => {
   const [ sort, setSort ] = useState("asc") // Have to initialize as asc or desc, not empty string
   const [ selectedCategories, setSelectedCategories ] = useState([])
 
-  const [ data, setData ] = useState([])
-  //const [ loading, setLoading ] = useState(false)
+  const [ products, setProducts ] = useState(null)
+  const [ error, setError ] = useState("")
+  const [ loading, setLoading ] = useState(false)
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        //setLoading(true)
+    const fetchProducts = async () => {
+        const response = await fetch("/api/products")
+        const json = await response.json()
 
-        const res = await axios.get(process.env.REACT_APP_API_URL + `/categories?populate=*&[filters][categories][id][$eq]=${categoryID}`, {
-          headers: { Authorization: "Bearer " + process.env.REACT_APP_STRAPI_API_TOKEN }
-        })
-        setData(res.data.data)
-
-      } catch(err) {
-        //setError(err)
+        if (response.ok) {
+          setProducts(json)
+        }
       }
-      console.log(data)
-      //setLoading(false)
-    }
-    fetchData()
+
+      fetchProducts()
+      console.log(products)
   }, [])
   
   /*
@@ -70,7 +62,7 @@ const Products = () => {
           </div>
           */}
           <div className='mb-8'>
-            <h2 className='font-medium mb-2 text-lg'>Max Price</h2>
+            <h2 className='font-medium mb-2 text-lg'>Price</h2>
             <div className='mb-2'>
               <input type="range" id="default-range" className='h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer' min={0} max={1000} defaultValue={500} onChange={ (e)=>setMaxPrice(e.target.value) } />
               <span className='mr-2'>${maxPrice}</span>
@@ -89,34 +81,63 @@ const Products = () => {
               <label className='ml-2' htmlFor='desc'>Price High-Low</label>
             </div>
           </div>
+
+          <div className='mb-8'>
+            <h2 className='font-medium mb-2 text-lg'>Sort By</h2>
+            <div className='mb-2'>
+              <input type="radio" id="asc" value="asc" name="price" onChange={(e) => setSort("asc")} />
+              <label className='ml-2' htmlFor='asc'>Price Low-High</label>
+            </div>
+            <div className='mb-2'>
+              <input type="radio" id="desc" value="desc" name="price" onChange={(e) => setSort("desc")} />
+              <label className='ml-2' htmlFor='desc'>Price High-Low</label>
+            </div>
+          </div>
         </div>
 
         {/* Right */}
         <div className='flex flex-col w-full'>
-          <img 
-            className='w-full md:h-72 object-cover mb-8'
+          {/*
+          <img className='w-full md:h-80 mb-8' alt=""
             src={ categoryID === 1 ? clothingImage
               : categoryID === 2 ? electronicsImage
               : categoryID === 3 ? furnitureImage
               : appliancesImage
               }
-            alt=""
           />
-          <ProductList catId={categoryID} maxPrice={maxPrice} sort={sort} categories={selectedCategories}/>
+          */}
+
+          <div className='flex flex-row gap-6 flex-wrap justify-center'>
+            { loading
+                ? "Loading..."
+                : products?.map((product) => ( 
+                  <div key={product._id}>
+                    <Card id={product._id} title={product.title}
+                      isNewProduct={product.isNewProduct} onSale={product.onSale}
+                      isFeatured={product.isFeatured} isTrending={product.isTrending}
+                      src1={product.src1} src2={product.src2}
+                      price={product.price} salePrice={product.salePrice}
+                    /> 
+                  </div>
+                ))
+            }
+          </div>
+
         </div>
       </div>
 
 
       {/* MOBILE */}
         <div className='flex md:hidden flex-col w-full'>
-          <img className='w-full md:h-72 object-cover mb-8'
+          {/*
+          <img className='w-full md:h-72 object-cover mb-8' alt=""
             src={ categoryID === 1 ? clothingImage
               : categoryID === 2 ? electronicsImage
               : categoryID === 3 ? furnitureImage
               : appliancesImage
               }
-            alt=""
           />
+          */}
 
           <div className='sticky h-full mt-8 px-4 flex flex-row gap-6'>
             <div className='mb-8'>
@@ -141,7 +162,20 @@ const Products = () => {
             </div>
           </div>
 
-          <ProductList catId={categoryID} maxPrice={maxPrice} sort={sort} categories={selectedCategories}/>
+          <div className='flex flex-row gap-6 flex-wrap justify-center'>
+            { loading
+                ? "Loading..."
+                : products?.map((product) => ( 
+                  <div key={product._id}>
+                    <Card id={product._id} title={product.title} description={product.description}
+                      src1={product.src1} src2={product.src2}
+                      price={product.price} salePrice={product.salePrice}
+                    /> 
+                  </div>
+              ))
+            }
+          </div>
+
         </div>
     </div>
   )

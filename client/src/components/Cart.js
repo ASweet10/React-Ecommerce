@@ -1,14 +1,9 @@
-import React from 'react'
+import React, {useState} from 'react'
 import DeleteIcon from '@mui/icons-material/Delete'
-import { useSelector, useDispatch } from 'react-redux'
-import { removeItem } from '../redux/cartReducer'
-import { loadStripe } from '@stripe/stripe-js'
-import { makeRequest } from '../makeRequest'
 import toast from 'react-hot-toast'
 
 const Cart = () => {
-  const products = useSelector(state => state.cart.products )
-  const dispatch = useDispatch()
+  const [products, setProducts] = useState()
 
   const totalPrice = () => {
     let total = 0
@@ -16,28 +11,7 @@ const Cart = () => {
     return total.toFixed(2)
   }
 
-  const stripePromise = loadStripe('pk_test_51LqLC1GzJAaeelgb6Yj8VLhIOf3Wq6We71lWjQpAFsHkeLB7AnncQjZawbOnvP7YDMBVzSwSLRtoiCqOnG8aJpaD00GPWC1VjW')
-
-  const handlePayment = async () => {
-    try {
-      const stripe = await stripePromise
-
-      const res = await makeRequest.post("/orders", {
-        products
-      })
-
-      toast.loading('Redirecting...')
-
-      await stripe.redirectToCheckout({
-        sessionId: res.data.stripeSession.id 
-      })
-    } catch(err) {
-      console.log(err)
-    }
-  }
-
   const handleDeleteItem = async ( id, quantity, title ) => {
-    dispatch(removeItem(id))
     toast.error('Removed ' + title)
   }
 
@@ -63,7 +37,6 @@ const Cart = () => {
         </div>
         <button 
           className='flex items-center justify-center gap-5 w-40 p-3 mb-5 cursor-pointer border-none bg-black text-white font-medium transition duration-300 hover:scale-105'
-          onClick={handlePayment}
         >
           Go To Checkout
         </button>
