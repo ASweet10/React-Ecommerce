@@ -8,12 +8,12 @@ export const CartProvider = ({ children }) => {
   const [ cartItems, setCartItems ] = useState(localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [])
 
   const addToCart = (item, qty) => {
-    const isItemInCart = cartItems.find((cartItem) => cartItem.id === item.id)
+    const isItemInCart = cartItems.find((cartItem) => cartItem._id === item._id)
 
     if (isItemInCart) {
       setCartItems(
         cartItems.map((cartItem) =>
-          cartItem.id === item.id
+          cartItem._id === item._id
             ? { ...cartItem, quantity: cartItem.quantity + qty }
             : cartItem
         )
@@ -26,14 +26,14 @@ export const CartProvider = ({ children }) => {
   }
 
   const removeFromCart = (item) => {
-    const isItemInCart = cartItems.find((cartItem) => cartItem.id === item.id)
+    const isItemInCart = cartItems.find((cartItem) => cartItem._id === item._id)
 
     if (isItemInCart.quantity === 1) {
-      setCartItems(cartItems.filter((cartItem) => cartItem.id !== item.id))
+      setCartItems(cartItems.filter((cartItem) => cartItem._id !== item._id))
     } else {
       setCartItems(
         cartItems.map((cartItem) =>
-          cartItem.id === item.id
+          cartItem._id === item._id
             ? { ...cartItem, quantity: cartItem.quantity - 1 }
             : cartItem
         )
