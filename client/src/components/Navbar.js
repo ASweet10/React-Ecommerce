@@ -1,19 +1,20 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../images/goat-logo.png'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import { FaBars, FaTimes } from 'react-icons/fa'
 import { PiDiamond, PiDiamondFill } from "react-icons/pi"
 import Cart from './Cart'
+import { CartContext } from '../context/CartContext'
 
 const Navbar = () => {
   const [ cartOpen, setCartOpen ] = useState(false)
   const [ navOpen, setNavOpen ] = useState(false)
   const [ products, setProducts ] = useState(0)
+  const { cartItems } = useContext(CartContext)
 
   const navCategories = [
     { 'id': 1, 'title': 'Home', 'link': '/' },
-    { 'id': 2, 'title': 'About', 'link': '/about' },
     { 'id': 3, 'title': 'Products', 'link': '/products' },
   ]
 
@@ -36,7 +37,7 @@ const Navbar = () => {
         <div className='flex cursor-pointer'>
           <div className='flex flex-row relative' onClick={()=>setCartOpen(!cartOpen)}>
             <ShoppingCartIcon className='text-primary' />
-            <span className='flex items-center justify-center ml-3 mt-3 text-sm w-4 h-4 rounded-md bg-blue text-white absolute'>{products ? products?.length : 0}</span>
+            <span className='flex items-center justify-center ml-3 mt-3 text-sm w-4 h-4 rounded-md bg-blue text-white absolute'>{cartItems ? cartItems?.length : 0}</span>
           </div>
         </div>
       </div>

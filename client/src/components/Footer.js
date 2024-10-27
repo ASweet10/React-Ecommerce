@@ -13,7 +13,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className='flex flex-row gap-4 text-white text-3xl pt-10 md:pt-0'>
+        <div className='flex flex-row gap-4 text-white text-2xl pt-10 md:pt-0'>
           <a href="/"><FaXTwitter /></a>
           <a href="/"><FaFacebookF /></a>
           <a href="/"><FaInstagram /></a>

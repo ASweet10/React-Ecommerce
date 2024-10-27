@@ -9,8 +9,8 @@ const PictureTextSection = () => {
         </div>
 
         <div className='flex flex-col md:w-1/2 py-8 w-full h-full items-center'>
-            <h1 className='capitalize font-bold text-2xl'>The Best in Modern Electronics</h1>
-            <p className='items-center md:px-10 py-4 text-lg'>Shop from a wide variety of electronics from popular brands like Apple, Dell, and Sony.</p>
+            <h1 className='capitalize font-bold text-3xl'>The Best in Modern Electronics</h1>
+            <p className='items-center mx:2 md:mx-8 md:px-10 py-4 text-xl'>Shop from a wide variety of electronics from popular brands like Apple, Dell, and Sony.</p>
         </div>
     </div>
   )
