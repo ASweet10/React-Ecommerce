@@ -4,6 +4,7 @@ import StarBorderIcon from '@mui/icons-material/StarBorder'
 import { useParams } from 'react-router-dom'
 import TrendingProducts from '../components/TrendingProducts'
 import { CartContext } from '../context/CartContext'
+import { FaCircle, FaRegCircle } from "react-icons/fa"
 
 const Product = () => {
   const id = useParams().id
@@ -73,6 +74,16 @@ const Product = () => {
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
                      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                   </p>
+                </div>
+
+                <div className="flex gap-1 py-4">
+                    { data?.colors?.map((color) => (
+                        color === 'black' ? (<FaCircle className="text-black text-3xl cursor-pointer"/>) :
+                        color === 'blue' ? (<FaCircle className="text-blue text-3xl cursor-pointer"/>) : 
+                        color === 'white' ? (<FaCircle className="text-white text-3xl cursor-pointer"/>) :                        
+                        (<FaCircle className="text-red text-3xl cursor-pointer"/>)
+                    ))
+                    }
                 </div>
 
                 <div className='pt-4 pb-8'>

@@ -30,7 +30,7 @@ const Cart = () => {
         ))}
         <div className='flex justify-between font-medium text-md mb-5'>
           <span>SUBTOTAL</span>
-          <span>${getCartTotal()}</span>
+          <span>${getCartTotal().toFixed(2)}</span>
         </div>
         <button 
           className='flex items-center justify-center gap-5 w-40 p-3 mb-5 cursor-pointer border-none bg-black text-white font-medium transition duration-300 hover:scale-105'
