@@ -10,9 +10,9 @@ const cors = require('cors')
 const app = express()
 
 // Middleware
-//app.use(express.json())
+app.use(express.json())
 // Serve static files from client build
-app.use(express.static(path.join(__dirname, '../client/build')))
+//app.use(express.static(path.join(__dirname, '../client/build')))
 app.use(cors(
     {
         origin: '*',
@@ -28,10 +28,11 @@ app.use((req, res, next) => {
 
 // Routes
 app.use('/api/products', productRoutes)
-
+/*
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));
 })
+*/
 
 mongoose.connect(process.env.MONGDB_URI)
     .then(() => {
