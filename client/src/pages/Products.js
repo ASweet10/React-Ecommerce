@@ -74,7 +74,7 @@ const Products = () => {
   }*/
 
   return (
-    <div className='flex px-4 md:px-24 py-12 gap-8 bg-background'>
+    <div className='flex px-4 md:px-20 py-12 gap-8 bg-background'>
 
       {/* DESKTOP */}
       <div className='hidden md:flex'>

@@ -5,10 +5,10 @@ import { FaCircle, FaRegCircle } from "react-icons/fa"
 const Card = ({ product }) => {
   return (
     <Link to={`/product/${product?._id}`} reloadDocument> {/* reloadDocument: Re-render page with proper product displayed */}
-        <div className='flex flex-col w-56 md:w-64 justify-center' key={product?._id}>
+        <div className='flex flex-col w-56 md:w-60 justify-center' key={product?._id}>
             <div className='w-full h-60 md:h-80 overflow-hidden relative'>
                 { product?.isNewProduct === true && <span className='absolute mt-3 ml-3 bg-black text-white px-1 py-1 z-30 font-medium'>New</span> }
-                { product?.onSale === true && <span className='absolute mt-3 ml-[148px] md:ml-[200px] bg-red text-white px-1 py-1 z-30 font-medium'>SALE</span> }
+                { product?.onSale === true && <span className='absolute mt-3 ml-[148px] md:ml-[185px] bg-red text-white px-1 py-1 z-30 font-medium'>SALE</span> }
                 <img src={ product?.src1 } alt="..." className='w-full h-full object-cover absolute z-10' />
                 <img src={ product?.src2 } alt="..."className='w-full h-full object-cover absolute z-20 opacity-0 hover:opacity-100' />
             </div>
