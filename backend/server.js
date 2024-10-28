@@ -23,10 +23,10 @@ app.use((req, res, next) => {
 })
 
 // Routes
-app.get(`${process.env.SERVER_URL}/`, (req, res) => {
+app.get('/', (req, res) => {
     res.send("Hello from express")
 })
-app.use(`${process.env.SERVER_URL}/api/products`, productRoutes)
+app.use('/api/products', productRoutes)
 /*
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));
