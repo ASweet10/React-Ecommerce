@@ -17,7 +17,7 @@ const Product = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(`${process.env.SERVER_URL}/api/products/${id}`)
+      const response = await fetch(`https://react-ecommerce-w9ls.onrender.com/api/products/${id}`)
       const json = await response.json()
 
       if (response.ok) {
