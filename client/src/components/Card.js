@@ -17,7 +17,7 @@ const Card = ({ product }) => {
                 <div className='flex px-2'>
                     { product?.onSale ? (
                             <div className='flex flex-row gap-2 items-center'>
-                                <h3 className='line-through'>${product?.price}</h3>
+                                <h3 className='line-through text-red'>${product?.price}</h3>
                                 <h3 className='text-lg'>${product?.salePrice}</h3>
                             </div>
                         ) : ( <h3 className='font font-normal text-sm first:text-gray-500'>${product?.price.toFixed(2)}</h3> )
