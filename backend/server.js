@@ -13,24 +13,20 @@ const app = express()
 app.use(express.json())
 // Serve static files from client build
 //app.use(express.static(path.join(__dirname, '../client/build')))
-app.use(cors(
-    {
-        origin: '*',
-        methods: ['GET', 'POST', 'PATCH', 'DELETE'],
-        credentials: true
-    }
-))
+
+
+app.use(cors()) // Enables CORS for all origins
 
 app.use((req, res, next) => {
     console.log(req.path, req.method)
-    next()
+    next() // Pass control to next middleware
 })
 
 // Routes
-app.get('/', (req, res) => {
+app.get(`${process.env.SERVER_URL}/`, (req, res) => {
     res.send("Hello from express")
 })
-app.use('/api/products', productRoutes)
+app.use(`${process.env.SERVER_URL}/api/products`, productRoutes)
 /*
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));
