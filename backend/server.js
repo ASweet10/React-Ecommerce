@@ -1,6 +1,6 @@
-//require('dotenv').config()
+require('dotenv').config()
 const path = require('path')
-require('dotenv').config({ path: path.resolve(__dirname, './.env')})
+//require('dotenv').config({ path: path.resolve(__dirname, './.env')})
 const express = require('express')
 const mongoose = require('mongoose')
 const productRoutes = require('./routes/productRoutes')
@@ -27,6 +27,9 @@ app.use((req, res, next) => {
 })
 
 // Routes
+app.get('/', (req, res) => {
+    res.send("Hello from express")
+})
 app.use('/api/products', productRoutes)
 /*
 app.get('*', (req, res) => {
