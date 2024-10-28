@@ -11,7 +11,7 @@ const TrendingProducts = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-        const response = await fetch("/api/products")
+        const response = await fetch(`${process.env.SERVER_URL}/api/products`)
         const json = await response.json()
 
         if (response.ok) {
