@@ -11,6 +11,8 @@ const app = express()
 
 // Middleware
 app.use(express.json())
+// Serve static files from client build
+//app.use(express.static(path.join(__dirname, '../client/build')))
 app.use(cors(
     {
         origin: '*',
@@ -36,4 +38,3 @@ mongoose.connect(process.env.MONGDB_URI)
     .catch((error) => {
         console.log(error)
     })
-    
