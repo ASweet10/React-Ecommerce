@@ -62,7 +62,7 @@ const TrendingProducts = () => {
             { error ? "Something went wrong" : loading ? "Loading..." : 
               products?.filter(product => product.isTrending === true)
                 .map((product) => ( 
-                  <Card product={product}/> 
+                  <Card product={product} key={product._id}/> 
                 ))
             }
           </div>

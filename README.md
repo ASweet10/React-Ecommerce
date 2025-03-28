@@ -1,7 +1,9 @@
 # React-Ecommerce
-Images: Pexels
+Backend .env
+-PORT, MONGDB_URI, SERVER_URL
 
-1. 401 when fetching products Console > headers: token Bearer undefined
+Troubleshooting
+1. 401 when fetching products (Console -> headers: token Bearer undefined)
 - ENV variable needs REACT_APP prefix (REACT_APP_STRAPI_API_URL)
 2. 403 Unauthorized (Can't connect to strapi backend)
 - Strapi admin: "Users & Permissions Plugin" > Roles > Public > Permissions > find & findOne checked

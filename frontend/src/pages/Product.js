@@ -25,7 +25,6 @@ const Product = () => {
       }
     }
     fetchData()
-    console.log(data)
   }, [])
 
   return (

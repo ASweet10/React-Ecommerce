@@ -2,15 +2,17 @@ import React from 'react'
 import HeroCarousel from '../components/HeroCarousel'
 import TrendingProducts from '../components/TrendingProducts'
 import FeaturedProducts from '../components/FeaturedProducts'
-import PictureTextSection from '../components/PictureTextSection'
+import PictureTextA from '../components/PictureTextA'
+import PictureTextB from '../components/PictureTextB'
 
 const Home = () => {
   return (
     <div>
       <HeroCarousel />
       <FeaturedProducts /> 
-      <PictureTextSection />
+      <PictureTextA/>
       <TrendingProducts />
+      <PictureTextB/>
     </div>
   )
 }

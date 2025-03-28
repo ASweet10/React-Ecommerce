@@ -30,10 +30,10 @@ router.get('/:id', async (req, res) => {
 
 // POST new product
 router.post('/', async (req, res) => {
-    const { title, description, price, salePrice, colors, src1, src2 } = req.body
+    const { title, category, description, price, salePrice, colors, src1, src2 } = req.body
 
     try {
-        const product = await Product.create({ title, description, price, salePrice, colors, src1, src2 })
+        const product = await Product.create({ title, category, description, price, salePrice, colors, src1, src2 })
         res.status(200).json(product)
     } catch (error) {
         res.status(400).json({error: error.message})

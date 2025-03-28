@@ -26,10 +26,10 @@ const Card = ({ product }) => {
                 
                 <div className="flex gap-1">
                     { product?.colors?.map((color) => (
-                        color === 'black' ? (<FaCircle className="text-black text-2xl"/>) :
-                        color === 'blue' ? (<FaCircle className="text-blue text-2xl"/>) : 
-                        color === 'white' ? (<FaCircle className="text-white text-2xl"/>) :                        
-                        (<FaCircle className="text-red text-2xl"/>)
+                        color === 'black' ? (<FaCircle className="text-black text-2xl" key={color}/>) :
+                        color === 'blue' ? (<FaCircle className="text-blue text-2xl" key={color} />) : 
+                        color === 'white' ? (<FaCircle className="text-white text-2xl" key={color}/>) :                        
+                        (<FaCircle className="text-red text-2xl" key={color}/>)
                     ))
                     }
                 </div>

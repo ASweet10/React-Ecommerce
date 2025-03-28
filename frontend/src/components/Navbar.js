@@ -62,7 +62,7 @@ const Navbar = () => {
                   <PiDiamondFill className='text-primary active:text-gray'/>
                   <Link 
                     onClick={() => setNavOpen(!navOpen)}
-                    to={link} smooth duration={500}>
+                    to={link} smooth={true} duration={500}>
                       {title}
                   </Link>
               </li>

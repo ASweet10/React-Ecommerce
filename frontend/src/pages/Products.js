@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import electronicsImage from '../images/pexels-electronics.jpg'
+//import { useParams } from 'react-router-dom'
 import Card from "../components/Card"
-import { FaCircle, FaRegCircle } from "react-icons/fa"
+import { FaCircle } from "react-icons/fa"
 
 const Products = () => {
-  const categoryID = parseInt(useParams().id)
+  //const categoryID = parseInt(useParams().id)
   const [ products, setProducts ] = useState(null)
-  const [ error, setError ] = useState("")
   const [ loading, setLoading ] = useState(false)
+
+  const [ categories, setCategories ] = useState(["computer", "audio", "gaming"])
 
   const [ maxPrice, setMaxPrice ] = useState(500)
   const [ sortOrder, setSortOrder ] = useState("asc")
@@ -27,8 +27,13 @@ const Products = () => {
     fetchProducts()
     console.log(products)
   }, [])
+
+  useEffect(() => {
+
+  }, [categories])
   
   const handleClearFilters = () => {
+    setCategories(["computer", "audio", "gaming"])
     setMaxPrice(500)
     setSortOrder("asc")
     setSelectedColor("")
@@ -39,19 +44,15 @@ const Products = () => {
     console.log(value)
   }
 
-  const findColorInArray = (product, color) => {
-    for (let i = 0; i < product?.colors.length; i++) {
-      if(product.colors[i] === selectedColor) {
-        return product
-      }
-      return null
+  const handleChangeCategory = (category) => {
+    { categories.includes(category) 
+      ? setCategories(categories.filter(string => string !== category))
+      : setCategories([...categories, category])
     }
   }
 
   const filteredProducts = products?.filter((product) => {
-    // If selectedColor exists, filter out products that don't have that color in Colors array
-    const colorMatch = selectedColor !== '' ? product.colors.includes(selectedColor) : product
-
+    const colorMatch = selectedColor !== '' ? product.colors.includes(selectedColor) : product // If selectedColor exists, filter products without that color
     const lessThanMaxPrice = product.price <= maxPrice // Filter out products with price larger than maxPrice
 
     return colorMatch && lessThanMaxPrice
@@ -62,6 +63,15 @@ const Products = () => {
 
   
   /*
+  const findColorInArray = (product, color) => {
+    for (let i = 0; i < product?.colors.length; i++) {
+      if(product.colors[i] === selectedColor) {
+        return product
+      }
+      return null
+    }
+  }
+
   const handleChange = (e) => {
     const value = e.target.value
     const isChecked = e.target.checked
@@ -80,6 +90,29 @@ const Products = () => {
       <div className='hidden md:flex'>
         {/* Left */}
         <div className='sticky h-full mt-8 px-4'>
+
+          <div className='mb-8'>
+            <div className='mb-2'>
+              <input type="checkbox" id="computerParts" value="computerParts" name="computerParts" checked={categories.includes("computer")}
+                onChange={(e) => handleChangeCategory("computer")} 
+              />
+              {/* htmlFor lets you click on text to affect checkbox */}
+              <label className='ml-2 text-lg' htmlFor='computerParts'>Computer</label>
+            </div>
+            <div className='mb-2'>
+              <input type="checkbox" id="audio" value="audio" name="audio" checked={categories.includes("audio")}
+                onChange={(e) => handleChangeCategory("audio")}
+              />
+              <label className='ml-2 text-lg' htmlFor='audio'>Audio</label>
+            </div>
+            <div className='mb-2'>
+              <input type="checkbox" id="gaming" value="gaming" name="gaming" checked={categories.includes("gaming")}
+                onChange={(e) => handleChangeCategory("gaming")}
+              />
+              <label className='ml-2 text-lg' htmlFor='gaming'>Gaming</label>
+            </div>
+          </div>
+
 
           <div className='mb-8'>
             <h2 className='font-medium mb-2 text-lg'>Price</h2>
@@ -103,6 +136,7 @@ const Products = () => {
               <label className='ml-2' htmlFor='desc'>Price High-Low</label>
             </div>
           </div>
+
 
           <div className='mb-8'>
             <h2 className='font-medium mb-2 text-lg'>Colors</h2>
@@ -162,7 +196,7 @@ const Products = () => {
             { loading ? "Loading..." : 
               sortedProducts
                 ?.map((product) => (
-                  <Card product={product} />
+                  categories.includes(product.category) ? <Card product={product} key={product._id} /> : <div key={product._id}></div>
                 ))
             }
           </div>
@@ -174,8 +208,30 @@ const Products = () => {
       {/* MOBILE */}
       <div className='flex md:hidden flex-col w-full'>
         {/* TOP */}
-        <div className='sticky h-full px-4 flex flex-col'>
-          <div className="flex gap-6">
+        <div className='sticky h-full px-3 flex flex-col pb-16'>
+          <div className="flex gap-16">
+            <div className='mb-8'>
+              <div className='mb-2 flex'>
+                <input type="checkbox" id="computerParts" value="computerParts" name="computerParts" checked={categories.includes("computer")}
+                  onChange={(e) => handleChangeCategory("computer")} 
+                />
+                {/* htmlFor lets you click on text to affect checkbox */}
+                <label className='ml-2 text-lg' htmlFor='computerParts'>Computer</label>
+              </div>
+              <div className='mb-2'>
+                <input type="checkbox" id="audio" value="audio" name="audio" checked={categories.includes("audio")}
+                  onChange={(e) => handleChangeCategory("audio")}
+                />
+                <label className='ml-2 text-lg' htmlFor='audio'>Audio</label>
+              </div>
+              <div className='mb-2'>
+                <input type="checkbox" id="gaming" value="gaming" name="gaming" checked={categories.includes("gaming")}
+                  onChange={(e) => handleChangeCategory("gaming")}
+                />
+                <label className='ml-2 text-lg' htmlFor='gaming'>Gaming</label>
+              </div>
+            </div>
+
             <div className='mb-8'>
               <h2 className='font-medium mb-2 text-lg'>Price</h2>
               <div className='flex flex-col mb-2'>
@@ -185,7 +241,9 @@ const Products = () => {
                 <span className='mr-2'>${maxPrice}</span>
               </div>
             </div>
+          </div>
 
+          <div className='flex gap-8'>
             <div className='mb-8'>
               <h2 className='font-medium mb-2 text-lg'>Sort By</h2>
               <div className='mb-2'>
@@ -197,9 +255,7 @@ const Products = () => {
                 <label className='ml-2' htmlFor='desc'>Price High-Low</label>
               </div>
             </div>
-          </div>
 
-          <div className="flex gap-2 items-center">
             <div className='mb-8'>
               <h2 className='font-medium mb-2 text-lg'>Colors</h2>
               <div className='flex gap-1 bg-gray bg-opacity-70 p-2 rounded-lg w-32'>
@@ -229,22 +285,24 @@ const Products = () => {
                 </div>
               </div>
             </div>
+          </div>
 
-            <div>
-              <button className="bg-black text-white text-lg font-semibold px-4 py-2 rounded-lg"
-                onClick={() => handleClearFilters()}
-              >
-                Clear filters
-              </button>
-            </div>
+
+          <div className="flex gap-2 items-center justify-center">
+            <button className="bg-black text-white text-lg font-semibold px-4 py-2 rounded-lg"
+              onClick={() => handleClearFilters()}
+            >
+              Clear filters
+            </button>
           </div>
         </div>
 
-        <div className='flex flex-row gap-6 flex-wrap justify-center'>
+
+        <div className='flex flex-col md:flex-row gap-4 justify-center items-center'>
           { loading ? "Loading..." : 
             sortedProducts
               ?.map((product) => (
-                <Card product={product} />
+                categories.includes(product.category) ? <Card product={product} key={product._id} /> : <div key={product._id}></div>
               ))
           }
         </div>

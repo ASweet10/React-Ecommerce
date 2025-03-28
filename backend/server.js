@@ -11,9 +11,7 @@ const app = express()
 
 // Middleware
 app.use(express.json())
-// Serve static files from client build
-//app.use(express.static(path.join(__dirname, '../client/build')))
-
+//app.use(express.static(path.join(__dirname, '../client/build')))  Serve static files from client build
 
 app.use(cors()) // Enables CORS for all origins
 
