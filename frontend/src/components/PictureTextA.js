@@ -10,7 +10,7 @@ const PictureTextA = () => {
         </div>
 
         <div className="flex flex-col md:w-1/2 py-8 w-full h-full items-center">
-            <h1 className='capitalize font-bold text-3xl'>Main Modern Electronics Brands</h1>
+            <h1 className='capitalize font-bold text-3xl'>Main Electronics Brands</h1>
             <p className='items-center mx:2 md:mx-8 md:px-10 py-4 text-xl'>We carry all popular brands like Apple, Dell, and Sony.</p>
         </div>
     </div>
