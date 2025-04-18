@@ -20,16 +20,16 @@ const Card = ({ product }) => {
                                 <h3 className='line-through text-red'>${product?.price}</h3>
                                 <h3 className='text-lg'>${product?.salePrice}</h3>
                             </div>
-                        ) : ( <h3 className='font font-normal text-sm first:text-gray-500'>${product?.price.toFixed(2)}</h3> )
+                        ) : ( <h3 className='font font-normal first:text-gray-500'>${product?.price.toFixed(2)}</h3> )
                     }
                 </div>
                 
                 <div className="flex gap-1">
                     { product?.colors?.map((color) => (
-                        color === 'black' ? (<FaCircle className="text-black text-2xl" key={color}/>) :
-                        color === 'blue' ? (<FaCircle className="text-blue text-2xl" key={color} />) : 
-                        color === 'white' ? (<FaCircle className="text-white text-2xl" key={color}/>) :                        
-                        (<FaCircle className="text-red text-2xl" key={color}/>)
+                        color === 'black' ? (<FaCircle className="text-black text-2xl rounded-full border-2 border-black" key={color}/>) :
+                        color === 'blue' ? (<FaCircle className="text-blue text-2xl rounded-full border-2 border-black" key={color} />) : 
+                        color === 'white' ? (<FaCircle className="text-white text-2xl rounded-full border-2 border-black" key={color}/>) :                        
+                        (<FaCircle className="text-red text-2xl rounded-full border-2 border-black" key={color}/>)
                     ))
                     }
                 </div>

@@ -77,10 +77,10 @@ const Product = () => {
 
                 <div className="flex gap-1 py-4">
                     { data?.colors?.map((color) => (
-                        color === 'black' ? (<FaCircle className="text-black text-3xl cursor-pointer"/>) :
-                        color === 'blue' ? (<FaCircle className="text-blue text-3xl cursor-pointer"/>) : 
-                        color === 'white' ? (<FaCircle className="text-white text-3xl cursor-pointer"/>) :                        
-                        (<FaCircle className="text-red text-3xl cursor-pointer"/>)
+                        color === 'black' ? (<FaCircle className="text-black text-3xl cursor-pointer rounded-full border-2 border-black"/>) :
+                        color === 'blue' ? (<FaCircle className="text-blue text-3xl cursor-pointer rounded-full border-2 border-black"/>) : 
+                        color === 'white' ? (<FaCircle className="text-white text-3xl cursor-pointer rounded-full border-2 border-black"/>) :                        
+                        (<FaCircle className="text-red text-3xl cursor-pointer rounded-full border-2 border-black"/>)
                     ))
                     }
                 </div>
@@ -90,14 +90,14 @@ const Product = () => {
                     
                     <div className='flex items-center gap-4'>
                       <button onClick={() => setQuantity(prev => (prev === 1 ? 1 : prev - 1))}
-                        className='cursor-pointer w-12 h-12 border-2 border-gray text-red text-2xl font-bold'
+                        className='cursor-pointer w-12 h-12 border-2 border-gray text-red text-2xl font-bold hover:text-white hover:bg-red'
                       >
                         -
                       </button>
                       <h1 className='font-bold text-xl'>{quantity}</h1>
                       <button 
                         onClick={() => setQuantity(prev => prev+1)}
-                        className='cursor-pointer w-12 h-12 border-2 border-gray text-green text-2xl font-bold'
+                        className='cursor-pointer w-12 h-12 border-2 border-gray text-green text-2xl font-bold hover:text-white hover:bg-green'
                       >
                         +
                       </button>
