@@ -1,5 +1,5 @@
 import React from 'react'
-import tv from '../images/tv.jpg'
+import tv from '../images/tv.webp'
 
 const PictureTextA = () => {
 

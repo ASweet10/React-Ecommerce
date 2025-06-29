@@ -1,9 +1,9 @@
 import React from 'react'
-import carousel1 from '../images/carousel1.jpg'
-import carousel2 from '../images/carousel2.jpg'
-import carousel3 from '../images/carousel3.jpg'
-import carousel4 from '../images/carousel4.jpg'
-import carousel5 from '../images/carousel5.jpg'
+import carousel1 from '../images/carousel1.webp'
+import carousel2 from '../images/carousel2.webp'
+import carousel3 from '../images/carousel3.webp'
+import carousel4 from '../images/carousel4.webp'
+import carousel5 from '../images/carousel5.webp'
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io"
 import { RxDotFilled } from "react-icons/rx"
 import { Link } from 'react-router-dom'

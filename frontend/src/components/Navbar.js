@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
-import logo from '../images/goat-logo.png'
+import logo from '../images/goat-logo.webp'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import { FaBars, FaTimes } from 'react-icons/fa'
 import { PiDiamond, PiDiamondFill } from "react-icons/pi"

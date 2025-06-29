@@ -1,5 +1,5 @@
 import React from 'react'
-import gaming from '../images/gaming.jpg'
+import gaming from '../images/gaming.webp'
 
 const PictureTextB = () => {
 
