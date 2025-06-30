@@ -1,25 +1,6 @@
-import React, {useState, useEffect} from 'react'
 import Card from './Card'
 
-const FeaturedProducts = () => {
-  const [data, setData] = useState()
-  const [error, setError] = useState("")
-  const [loading, setLoading] = useState(false)
-  const [ products, setProducts ] = useState([])
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-        const response = await fetch('https://react-ecommerce-w9ls.onrender.com/api/products')
-        const json = await response.json()
-
-        if (response.ok) {
-          setProducts(json)
-        }
-      }
-
-      fetchProducts()
-      console.log(products)
-  }, [])
+const FeaturedProducts = ({ products }) => {
 
   return (
     <div className='w-full py-8 md:py-20 px-8 md:px-24 bg-background'>
@@ -32,11 +13,10 @@ const FeaturedProducts = () => {
         </div>
         
         <div className='flex flex-wrap justify-center gap-12'> {/* flex-wrap creates grid; horizontal layout without it */}
-          { error ? "Something went wrong" : loading  ? "Loading..." : 
-                  products?.filter(product => product.isFeatured === true)
-                  .map((product) => ( 
-                    <Card product={product} key={product._id}/> 
-                ))
+          { products?.filter(product => product.isFeatured === true)
+              .map((product) => ( 
+                <Card product={product} key={product._id}/> 
+            ))
           }
         </div>
     </div>

@@ -1,27 +1,8 @@
-import React from 'react'
 import Card from './Card'
 import { BsArrowLeftSquareFill, BsArrowRightSquareFill } from "react-icons/bs"
-import { useState, useEffect } from 'react'
 
-const TrendingProducts = () => {
-  const [ index, setIndex ] = useState(0)
-  const [error, setError] = useState("")
-  const [loading, setLoading] = useState(false)
-  const [ products, setProducts ] = useState([])
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-        const response = await fetch('https://react-ecommerce-w9ls.onrender.com/api/products')
-        const json = await response.json()
-
-        if (response.ok) {
-          setProducts(json)
-        }
-      }
-
-      fetchProducts()
-  }, [])
-  
+const TrendingProducts = ({ products }) => {
+  {/*
   const handlePrevButton = () => {
     const newIndex = index === 0 ? products?.length - 1 : index - 1
     setIndex(newIndex)
@@ -30,8 +11,8 @@ const TrendingProducts = () => {
     const newIndex = index === products?.length - 1 ? 0 : index + 1
     setIndex(newIndex)
   }
+  */}
   
-
   const slideLeft = () => {
     var slider = document.getElementById('slider')
     slider.scrollLeft = slider.scrollLeft - 500
@@ -59,8 +40,7 @@ const TrendingProducts = () => {
           </div>
 
           <div id='slider' className="flex w-full h-full  scroll scroll-smooth gap-6 overflow-x-hidden whitespace-nowrap">
-            { error ? "Something went wrong" : loading ? "Loading..." : 
-              products?.filter(product => product.isTrending === true)
+            { products?.filter(product => product.isTrending === true)
                 .map((product) => ( 
                   <Card product={product} key={product._id}/> 
                 ))
