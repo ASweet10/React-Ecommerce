@@ -1,9 +1,7 @@
-import HeroCarousel from '../components/HeroCarousel'
-import TrendingProducts from '../components/TrendingProducts'
-import FeaturedProducts from '../components/FeaturedProducts'
-import PictureTextA from '../components/PictureTextA'
-import PictureTextB from '../components/PictureTextB'
 import { useState, useEffect } from 'react'
+//import HeroCarousel from '../components/HeroCarousel'
+import TrendingProducts from '../components/TrendingProducts'
+import Products from '../components/Products'
 
 const Home = () => {
     const [ products, setProducts ] = useState([])
@@ -11,6 +9,7 @@ const Home = () => {
     useEffect(() => {
     const fetchProducts = async () => {
         const response = await fetch('https://react-ecommerce-w9ls.onrender.com/api/products')
+        //const response = await fetch('http://localhost:5000/api/products')
         const json = await response.json()
 
         if (response.ok) {
@@ -24,11 +23,8 @@ const Home = () => {
 
   return (
     <div>
-      <HeroCarousel />
-      <FeaturedProducts products={products} /> 
-      <PictureTextA/>
+      <Products products={products} />
       <TrendingProducts products={products} />
-      <PictureTextB/>
     </div>
   )
 }

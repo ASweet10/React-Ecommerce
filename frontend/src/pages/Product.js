@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import StarIcon from '@mui/icons-material/Star'
 import StarBorderIcon from '@mui/icons-material/StarBorder'
 import { useParams } from 'react-router-dom'
-import TrendingProducts from '../components/TrendingProducts'
 import { CartContext } from '../context/CartContext'
-import { FaCircle, FaRegCircle } from "react-icons/fa"
+import { FaCircle } from "react-icons/fa"
 
 const Product = () => {
   const id = useParams().id
@@ -18,6 +17,7 @@ const Product = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(`https://react-ecommerce-w9ls.onrender.com/api/products/${id}`)
+      //const response = await fetch(`http://localhost:5000/api/products/${id}`)
       const json = await response.json()
 
       if (response.ok) {
@@ -28,12 +28,11 @@ const Product = () => {
   }, [])
 
   return (
-    <div className='w-full py-6 px-6 md:px-16 bg-background'>
+    <div className='w-full py-6 px-6 md:px-16 bg-background min-h-[80vh] flex justify-center'>
       { loading 
           ? ("Loading...") 
           : ( 
-          //Wrap in React fragment; returning multiple things
-          <>
+          <div className='w-full md:w-3/5 flex'>
             <div className='flex flex-col md:flex-row pt-8 gap-12'>
               {/* Left */}
               <div className='flex flex-col w-full md:w-1/2 gap-4'>
@@ -69,7 +68,7 @@ const Product = () => {
                 <span className='text-2xl font-bold'>${(data?.price * quantity).toFixed(2)}</span>
 
                 <div className='flex flex-col justify-start pb-3 mt-4'>
-                  <p className='text-lg font-normal'>
+                  <p className='text-lg font-normal md:pr-16'>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
                      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                   </p>
@@ -115,10 +114,9 @@ const Product = () => {
 
               </div>
             </div>
-        </>)
+        </div>)
       }
 
-      <TrendingProducts />
     </div>
   )
 }

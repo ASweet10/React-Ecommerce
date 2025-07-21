@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
-//import { useParams } from 'react-router-dom'
 import Card from "../components/Card"
 import { FaCircle } from "react-icons/fa"
 
-const Products = () => {
+const ProductsPage = () => {
   //const categoryID = parseInt(useParams().id)
   const [ products, setProducts ] = useState(null)
   const [ loading, setLoading ] = useState(false)

@@ -2,9 +2,13 @@
 module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
-    extend: {},   
+    extend: {
+      fontFamily: {
+        gothic: ['Special Gothic Expanded One', 'sans-serif'],
+      },
+    },   
     colors: {
-      'background': '#dbdbdb',
+      'background': '#f0f0f0',
       'primary': '#000c21',
       'button-bg': '#0f0f0f',
       'white': '#FFFFFF',
@@ -15,7 +19,6 @@ module.exports = {
       'green': '#008207',
       'red': '#b00000',
       'pink': '#FF8DA1',
-
     }
   },
   plugins: [],

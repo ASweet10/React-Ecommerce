@@ -1,9 +1,9 @@
-import React, { useState, useContext } from 'react'
+import { useContext } from 'react'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { CartContext } from '../context/CartContext'
 
 const Cart = () => {
-  const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } = useContext(CartContext)
+  const { cartItems, removeFromCart, clearCart, getCartTotal } = useContext(CartContext)
 
   /*
   const totalPrice = () => {
@@ -14,7 +14,7 @@ const Cart = () => {
   */
 
   return (
-    <div className='absolute right-4 top-20 z-50 bg-background p-4 shadow-lg'>
+    <div className='absolute right-4 md:right-20 top-20 z-50 bg-background p-4 shadow-lg w-80'>
         <h1 className='mb-4 text-black font-bold text-xl text-center'>Your Cart</h1>
         { cartItems?.map((item) => (
           <div key={item._id} className='flex items-center gap-4 mb-6'>
