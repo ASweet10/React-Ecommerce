@@ -6,7 +6,7 @@
 - Context API for cart/checkout
   
 ## Demo
-### Note: Slow initial load time due Render free tier backend hosting
+### Note: Slow initial load time due to Render free-tier backend hosting
 [React Ecommerce](https://react-ecommerce-eight-beta.vercel.app)
 
 ## Notes
